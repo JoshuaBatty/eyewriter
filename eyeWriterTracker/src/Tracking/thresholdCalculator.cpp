@@ -119,12 +119,12 @@ void thresholdCalculator::drawPupilImageWithScanLine(int x, int y, int w, int h,
 	img.draw(0, 0, w, h);
 	
 	ofSetColor(255, 255, 255,80);
-	ofLine(0, scanY, w, scanY);				
-	ofLine(scanX, 0, scanX, h);
+	ofDrawLine(0, scanY, w, scanY);
+	ofDrawLine(scanX, 0, scanX, h);
 	
 	ofSetColor(255, 0, 0, 50);
 	ofFill();
-	ofCircle(whiteLocMin.x * (img.width / roi.width), whiteLocMin.y * (img.height / roi.height), 10);
+	ofDrawCircle(whiteLocMin.x * (img.width / roi.width), whiteLocMin.y * (img.height / roi.height), 10);
 	
 	ofDisableAlphaBlending();
 	
@@ -161,21 +161,21 @@ void thresholdCalculator::drawBrightnessScanGraph(int x, int y, ofxCvGrayscaleIm
 	ofEndShape(false);
 	
 	ofSetColor(255, 0, 0, 80);
-	ofLine(0, 255 - threshold_p, img.width, 255 - threshold_p);
+	ofDrawLine(0, 255 - threshold_p, img.width, 255 - threshold_p);
 	
 	ofSetColor(0, 0, 255, 80);
-	ofLine(0, 255 - threshold_g, img.width, 255 - threshold_g);
+	ofDrawLine(0, 255 - threshold_g, img.width, 255 - threshold_g);
 	
 	ofSetColor(120, 120, 120, 80);
-	ofLine(0, 255 - getMinInWhite(), img.width, 255 - getMinInWhite());
-	ofLine(0, 255 - getPupilAvg(), img.width, 255 - getPupilAvg());
+	ofDrawLine(0, 255 - getMinInWhite(), img.width, 255 - getMinInWhite());
+	ofDrawLine(0, 255 - getPupilAvg(), img.width, 255 - getPupilAvg());
 	
 	ofSetColor(120, 120, 255, 80);
-	ofLine(0, 255 - getGlintThreshold(true), img.width, 255 - getGlintThreshold(true));
+	ofDrawLine(0, 255 - getGlintThreshold(true), img.width, 255 - getGlintThreshold(true));
 	
 		
 	ofSetColor(255, 255, 255);
-	ofRect(0, 0, img.width, img.height);
+	ofDrawRectangle(0, 0, img.width, img.height);
 	ofDrawBitmapString(graphname, 1, 255 + 12);
 	
 	ofPopMatrix();

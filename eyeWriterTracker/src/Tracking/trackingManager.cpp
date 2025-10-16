@@ -186,12 +186,12 @@ void trackingManager::drawRawInput(int offsetX, int offsetY, float scale){
 	// Draw 100 red circles.
 	ofSetColor(255,0,0,40);
 	for (int i = 0; i < trail.size() - 1; i++) {
-		ofCircle(trail[i].x * scale + offsetX, trail[i].y * scale + offsetY, 5);
+		ofDrawCircle(trail[i].x * scale + offsetX, trail[i].y * scale + offsetY, 5);
 	}
 	
 	ofSetColor(255,255,0);
 	ofNoFill();
-	ofCircle(trail[trail.size()-1].x*20 + ofGetWidth()/2, ofGetHeight()/2 + trail[trail.size()-1].y*20, 5);
+	ofDrawCircle(trail[trail.size()-1].x*20 + ofGetWidth()/2, ofGetHeight()/2 + trail[trail.size()-1].y*20, 5);
 	
 	ofDisableAlphaBlending();
 }

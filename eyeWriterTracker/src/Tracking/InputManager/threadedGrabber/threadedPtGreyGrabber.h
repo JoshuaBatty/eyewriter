@@ -2,16 +2,16 @@
 
 #include "ofxLibdcPtGrey.h"
 #include "ofxOpenCv.h"
-#include "ofxThread.h"
+#include "ofThread.h"
 #include "ofEvents.h"
 
 #define INPUT_FIREFLY_WIDTH 752
 
-class threadedPtGreyGrabber : public ofxLibdcPtGrey, public ofxThread {
+class threadedPtGreyGrabber : public ofxLibdcPtGrey, public ofThread {
 protected:
 	int pollRate;
 	void threadedFunction() {
-		while(threadRunning) {
+		while(isThreadRunning()) {
 			lock();
 			update();			// we don't need to lock here if getThreadedPixels is called from "frameReceived"
 			unlock();
@@ -33,7 +33,7 @@ public:
 		setUseTexture(useTexture);				
 	}
 	void startCapture( bool verbose = false){
-		startThread(true, verbose);
+		startThread(true);
 	}
 	void setPollRate(int pollRate) {
 		this->pollRate = pollRate;
