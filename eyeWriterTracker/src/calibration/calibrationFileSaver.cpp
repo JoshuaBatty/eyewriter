@@ -51,7 +51,7 @@ void calibrationFileSaver::saveCalibration(ofxLeastSquares& ls, int nRefPoints, 
 		xml.popTag();
 	}
 	
-	xml.saveFile("settings/calibration.xml");
+	xml.save("settings/calibration.xml");
 	
 }
 
@@ -62,7 +62,7 @@ void calibrationFileSaver::loadCalibration(ofxLeastSquares& ls, vector<ofPoint>&
 	screenPoints.clear();
 	
 	ofxXmlSettings xml;
-	xml.loadFile("settings/calibration.xml");
+	xml.load("settings/calibration.xml");
 	vector< vector<float> > map;
 	
 	for (int i = 0; i < 6; i++) { // ideally this shouldn't be fixed at 6

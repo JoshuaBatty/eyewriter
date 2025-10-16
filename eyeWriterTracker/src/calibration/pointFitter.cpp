@@ -233,7 +233,7 @@ void pointFitter::drawLsError(){
 	if (bBeenFit) {
 		ofSetColor(0, 0, 255);
 		for (int i = 0; i < nDivisionsWidth * nDivisionsHeight; i++ ){
-			ofLine(referencePoints[i].x, referencePoints[i].y, pointsFromls[i].x, pointsFromls[i].y);
+			ofDrawLine(referencePoints[i].x, referencePoints[i].y, pointsFromls[i].x, pointsFromls[i].y);
 		}
 	}
 	ofSetColor(255, 255, 255);
@@ -244,7 +244,7 @@ void pointFitter::drawRawCalibrationInput(int offsetX, int offsetY, float scale)
 	if (bBeenFit) {
 		ofSetColor(0, 0, 255);
 		for (int i = 0; i < eyePoints.size(); i++) {
-			ofCircle(eyePoints[i].x*scale + offsetX, eyePoints[i].y*scale + offsetY, 3);
+			ofDrawCircle(eyePoints[i].x*scale + offsetX, eyePoints[i].y*scale + offsetY, 3);
 		}
 	}
 	ofSetColor(255, 255, 255);
@@ -256,7 +256,7 @@ void pointFitter::drawNonCalibration(ofRectangle & calibrationRectangle) {
 	ofSetLineWidth(3);
 	ofSetColor(255,0,0);
 	ofNoFill();
-	ofRect(calibrationRectangle.x, calibrationRectangle.y, calibrationRectangle.width, calibrationRectangle.height);
+	ofDrawRectangle(calibrationRectangle.x, calibrationRectangle.y, calibrationRectangle.width, calibrationRectangle.height);
 	ofPopStyle();
 }
 

@@ -15,9 +15,9 @@ extern  int buttonCount;
 //--------------------------------------------------------------
 void typingScene::setup(){
 	
-	franklinBook.loadFont("fonts/HelveticaNeueMed.ttf", 32);
+	franklinBook.load("fonts/HelveticaNeueMed.ttf", 32);
 	
-	franklinBookSmall.loadFont("fonts/HelveticaNeueMed.ttf", 16);
+	franklinBookSmall.load("fonts/HelveticaNeueMed.ttf", 16);
 	carriageReturnCounter = 0;
 	//buttonCount=390;
 	ofBackground(255, 255, 255);

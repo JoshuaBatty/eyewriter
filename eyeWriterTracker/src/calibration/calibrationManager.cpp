@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void calibrationManager::setup(){
 
-	calibrationInfo.loadImage("images/calibrationInfo.png");
-	font.loadFont("fonts/HelveticaNeueMed.ttf", 32);
+	calibrationInfo.load("images/calibrationInfo.png");
+	font.load("fonts/HelveticaNeueMed.ttf", 32);
 
 	nDivisionsWidth = 4;
 	nDivisionsHeight = 3;
@@ -152,7 +152,7 @@ void calibrationManager::draw(){
 
 	ofEnableAlphaBlending();
 	ofSetColor(30, 30, 30, (int) (255 - 255 *  menuEnergy));
-	ofRect(0,0,ofGetWidth(), ofGetHeight());
+	ofDrawRectangle(0,0,ofGetWidth(), ofGetHeight());
 
 //	ofSetColor(255, 255, 255, 40);
 //	for (int i = 0; i < nDivisionsWidth; i++){
@@ -174,15 +174,15 @@ void calibrationManager::draw(){
 		float rad = 30;
 		glLineWidth(4);
 		ofSetColor(255, 255, 255, 100);
-		ofLine (xp, yp-rad, xp, yp+rad);
-		ofLine (xp-rad, yp, xp+rad, yp);;
+		ofDrawLine (xp, yp-rad, xp, yp+rad);
+		ofDrawLine (xp-rad, yp, xp+rad, yp);;
 
 
 		ofSetColor(255, 255, 255, 255);
 
 		if (bAutomatic == true && bAmInAutodrive == true && bInAutoRecording){
 		} else {
-			ofCircle(xp, yp, rad*0.33);
+			ofDrawCircle(xp, yp, rad*0.33);
 		}
 
 		ofFill();
@@ -194,15 +194,15 @@ void calibrationManager::draw(){
 			if (bInAutoRecording){
 
 				ofSetColor(255, 0, 0, 200);
-				ofCircle(xp, yp, 26);
+				ofDrawCircle(xp, yp, 26);
 
 				ofSetColor(255, 255,255);
-				ofCircle(xp, yp, 5);
+				ofDrawCircle(xp, yp, 5);
 
 			} else {
 				ofNoFill();
 				ofSetColor(255, 255, 255, 150);
-				ofCircle(xp, yp, 200 - 200* autoPct);
+				ofDrawCircle(xp, yp, 200 - 200* autoPct);
 				ofFill();
 			}
 		}
@@ -213,10 +213,10 @@ void calibrationManager::draw(){
 		if (!bAutomatic)
 		if (inputEnergy > 0){
 			ofSetColor(255, 0, 127, (int) (60*inputEnergy));
-			ofCircle(xp, yp, rad * 3.5 );
+			ofDrawCircle(xp, yp, rad * 3.5 );
 
 			ofSetColor(255, 0, 127, (int) (150*inputEnergy));
-			ofCircle(xp, yp, rad );
+			ofDrawCircle(xp, yp, rad );
 		}
 
 		ofSetColor(255, 255, 255);
