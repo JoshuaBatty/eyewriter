@@ -13,7 +13,7 @@
 #include "ofMain.h"
 #include "FitEllipse.h"
 #include "ofxOpenCv.h"
-#include "ofxVectorMath.h"
+//#include "ofxVectorMath.h"
 
 
 class eyeEllipse {

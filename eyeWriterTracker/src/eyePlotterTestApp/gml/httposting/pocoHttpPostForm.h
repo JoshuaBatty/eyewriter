@@ -2,7 +2,7 @@
 #define POCOHTTPPOSTFORM_H
 
 #include "ofMain.h"
-#include "ofxThread.h"
+//#include "ofxThread.h"
 
 #include "Poco/Net/HTTPClientSession.h"
 #include "Poco/Net/HTTPRequest.h"
@@ -33,7 +33,7 @@ typedef Poco::Timestamp ofTimestamp;
 
 
 
-class pocoHttpPostForm : public ofxThread
+class pocoHttpPostForm : public ofThread
 {
     public:
         pocoHttpPostForm();

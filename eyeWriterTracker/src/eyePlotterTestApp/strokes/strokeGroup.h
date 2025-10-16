@@ -8,7 +8,7 @@
  */
 #pragma once
 #include "stroke.h"
-#include "ofxPoint2f.h"
+//#include "ofxPoint2f.h"
 #include "groupStyle.h"
 
 class strokeGroup{
@@ -60,10 +60,10 @@ class strokeGroup{
 			updateBoundingRect();
 		}
 
-		float rotate(float angle){
+		void rotate(float angle){
 
-			ofxPoint2f mid(rect.x + rect.width/2, rect.y + rect.height/2);
-			ofxPoint2f tmp;
+			ofPoint mid(rect.x + rect.width/2, rect.y + rect.height/2);
+			ofPoint tmp;
 			
 			for(int k = 0; k < strokes.size(); k++){
 				for(int i = 0; i < strokes[k].pts.size(); i++){
@@ -140,6 +140,8 @@ class strokeGroup{
 		ofPoint getLastPoint(){
 			if( hasPoints() ){
 				return (ofPoint)( strokes.back().pts.back() );
+			} else {
+				return ofPoint::zero();
 			}
 		}
 

@@ -75,11 +75,11 @@ class buttonTrigger : public buttonRect{
 		float pctActive = ofMap(pct, 0.0, maxCount, 0.0, 80.0);
 		ofSetColor((int) (180 - pctActive), 180, (int) (180 - pctActive));
 
-		ofRect(x, y, width, height);
+		ofDrawRectangle(x, y, width, height);
 
 		ofNoFill();
 		ofSetColor(30, 30, 30);
-		ofRect(x, y, width, height);
+		ofDrawRectangle(x, y, width, height);
 		
 		if (!bHasFont){
 			float textWidth = 8.0f * displayText.length();

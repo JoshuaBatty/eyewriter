@@ -2,9 +2,9 @@
 #define _THREADED_IMG_SAVER
 
 #include "ofMain.h"
-#include "ofxThread.h"
+//#include "ofxThread.h"
 
-class threadedImageSaver : public ofxThread{
+class threadedImageSaver : public ofThread{
 
 	public:
 
@@ -21,7 +21,7 @@ class threadedImageSaver : public ofxThread{
 		}
 
 		void start(){
-            startThread(true, false);   // blocking, verbose
+			startThread(true);//, false);   // blocking, verbose
         }
 
         void stop(){

@@ -38,8 +38,8 @@ class renderManager{
 	void render(vector<strokeGroup>& groups){
 		ofPushStyle();
 		
-		if( dot.width == 0){
-			dot.loadImage("resources/dot2.png");
+		if( dot.getWidth() == 0){
+			dot.load("resources/dot2.png");
 			dot.setAnchorPercent(50, 50);
 		}
 		
@@ -51,7 +51,7 @@ class renderManager{
 			if (curStyle.outline > 0){
 
 				ofEnableAlphaBlending();
-				dot.getTextureReference().bind();
+				dot.getTexture().bind();
 				ofSetColor(curStyle.colors["outlineColor"]);
 				int shiftX = curStyle.atts["dropShadowX"];
 				int shiftY = curStyle.atts["dropShadowY"];
@@ -59,7 +59,7 @@ class renderManager{
 				for (int s = 0; s < curGroup.strokes.size(); s++){
 					stroke& curStroke = curGroup.strokes[s];
 					for (int p = 0; p < curStroke.pts.size() - 1; p++){
-						ofxVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
+						ofVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
 						float l = dir.lengthSquared();
 						float step = 60.0/l + .001*curStyle.outline;
 						
@@ -94,7 +94,7 @@ class renderManager{
 						}
 					}
 				}
-				dot.getTextureReference().unbind();
+				dot.getTexture().unbind();
 				ofDisableAlphaBlending();
 
 			}
@@ -132,8 +132,8 @@ class renderManager{
 				ofSetColor(curStyle.colors["shadowColor"]);
 				for(int p = 0; p < curStroke.pts.size()-1; p++){
 					//ofLine(curGroup.strokes[i].pts[k].x, curGroup.strokes[i].pts[k].y,curGroup.strokes[i].pts[k].x-50, curGroup.strokes[i].pts[k].y);
-					ofxVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
-					float dot = ofxVec2f(-1,0).dot(dir);
+					ofVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
+					float dot = ofVec2f(-1,0).dot(dir);
 					if (i == 1) dot*=-1;
 					(curStyle.dotShadow) ? ((dot < 0) ? ofSetColor(((curStyle.colors["shadowColor"] >> 16) & 0xff)*.4,
 																		  ((curStyle.colors["shadowColor"] >> 8) & 0xff)*.4,
@@ -152,7 +152,7 @@ class renderManager{
 					ofEnableAlphaBlending();
 					//// DROP SHADOW HIGHLIGHTS ////////////////////////////////////
 					for (int p = 0; p < curStroke.pts.size() - 1; p++){
-						ofxVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
+						ofVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
 						float l = dir.lengthSquared();
 						float step = .1;
 						
@@ -195,7 +195,7 @@ class renderManager{
 					ofSetColor(curStyle.colors["strokeColor"]);
 					ofFill();
 					for(int p = 0; p < curStroke.pts.size(); p++){
-						ofCircle(curStroke.pts[p].x+shiftX, curStroke.pts[p].y+shiftY,.5*curStyle.atts["strokeWeight"]);
+						ofDrawCircle(curStroke.pts[p].x+shiftX, curStroke.pts[p].y+shiftY,.5*curStyle.atts["strokeWeight"]);
 					}
 					////////////////////////////////////////////////////////////////
 				}
@@ -275,7 +275,7 @@ class renderManager{
 				if (curStyle.atts["strokeWeight"] > 4){
 					ofFill();
 					for(int p = 0; p < curStroke.pts.size(); p++){
-						ofCircle(curStroke.pts[p].x, curStroke.pts[p].y,.5*curStyle.atts["strokeWeight"]);
+						ofDrawCircle(curStroke.pts[p].x, curStroke.pts[p].y,.5*curStyle.atts["strokeWeight"]);
 					}
 				}
 				////////////////////////////////////////////////////////////////	
@@ -284,10 +284,10 @@ class renderManager{
 							/// MAIN LETTER STROKE ///////////////////////////////////////
 							ofPushStyle();
 							ofEnableAlphaBlending();
-							dot.getTextureReference().bind();
+							dot.getTexture().bind();
 							for (int s = 0; s < groups[i].strokes.size(); s++){
 								for (int p = 0; p < curStroke.pts.size() - 1; p++){
-									ofxVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
+									ofVec2f dir = curStroke.pts[p+1] - curStroke.pts[p];
 									float l = dir.lengthSquared();
 									float step = 60.0/l;
 									
@@ -311,7 +311,7 @@ class renderManager{
 									}
 								}
 							}
-							dot.getTextureReference().unbind();
+							dot.getTexture().unbind();
 							ofDisableAlphaBlending();
 							ofPopStyle();
 						break;

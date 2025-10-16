@@ -2,14 +2,14 @@
 
 #include "ofVideoGrabber.h"
 #include "ofxOpenCv.h"
-#include "ofxThread.h"
+//#include "ofxThread.h"
 #include "ofEvents.h"
 
-class threadedQtVideoGrabber : public ofVideoGrabber, public ofxThread {
+class threadedQtVideoGrabber : public ofVideoGrabber, public ofThread {
 protected:
 	int pollRate;
 	void threadedFunction() {
-		while(threadRunning) {
+		while(isThreadRunning()) {
 			lock();
 			update();						// we don't need lock here only if getThreadedPixels is called from "frameReceived"
 			unlock();
@@ -31,7 +31,7 @@ public:
 		addListener(listener);
 	}
 	void startCapture(bool verbose = false){
-		startThread(true, verbose);
+		startThread(true);
 	}
 	void setPollRate(int pollRate) {
 		this->pollRate = pollRate;
@@ -45,7 +45,7 @@ public:
 	}
 	void getThreadedPixels(ofxCvColorImage & colorImg, bool & bNeedUpdate) {
 		lock();
-		colorImg.setFromPixels(this->getPixels(), width, height);
+		colorImg.setFromPixels(this->getPixels(), getWidth(), getHeight());
 		bNeedUpdate = true;
 		unlock();
 	}

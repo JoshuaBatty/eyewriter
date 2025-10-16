@@ -374,7 +374,7 @@ void typingScene::draw(){
 	//float remainY = (height - textHeight)/2.0f + (textHeight/2.0f);
 	ofFill();
 	ofSetColor(0,0,0);
-	ofRect(0,0,ofGetWidth(), 200);
+	ofDrawRectangle(0,0,ofGetWidth(), 200);
 	
 	
 	ofSetColor(255,255,255);
@@ -407,7 +407,7 @@ void typingScene::draw(){
 	float yy = franklinBook.getStringBoundingBox(layedoutmessage + ".", 30, 50).y + franklinBook.getStringBoundingBox(layedoutmessage+ ".", 30, 50).height;
 	
 	ofSetColor(127, 127, 127);
-	ofRect(xx, yy, 10,3);
+	ofDrawRectangle(xx, yy, 10,3);
 	
 	ofPopStyle();
 	

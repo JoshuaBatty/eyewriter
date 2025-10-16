@@ -93,10 +93,10 @@ void pongScene::draw(){
 	
 	ofFill();
 	ofSetColor(255,255,255);
-	ofCircle(ballPoint.x, ballPoint.y, 50);
+	ofDrawCircle(ballPoint.x, ballPoint.y, 50);
 	
 	ofSetRectMode(OF_RECTMODE_CENTER);
-	ofRect(rectPoint.x, rectPoint.y, 110, 20);
+	ofDrawRectangle(rectPoint.x, rectPoint.y, 110, 20);
 	ofSetRectMode(OF_RECTMODE_CORNER);
 	
 		

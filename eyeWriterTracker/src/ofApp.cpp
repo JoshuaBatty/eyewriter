@@ -1,14 +1,14 @@
 
-#include "testApp.h"
+#include "ofApp.h"
 #include "stdio.h"
 
 //--------------------------------------------------------------
-testApp::testApp(){
+ofApp::ofApp(){
 
 }                                                  
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
 
 	
 	//---- setup standard application settings
@@ -38,7 +38,7 @@ void testApp::setup(){
 
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
 
 //	ofBackground(70,70,70);
 	ofBackground(30,30,30);
@@ -117,7 +117,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
 
 	
 	ofSetColor(255, 255, 255);
@@ -157,7 +157,7 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 	
 	
 	switch (key){
@@ -208,17 +208,17 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 	
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 	
 	if (mode == MODE_TRACKING)			TM.mouseDragged(x, y, button);
 	if (mode == MODE_CALIBRATING)		CM.mouseDragged(x, y, button);
@@ -226,7 +226,7 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 
 	
 	if (mode == MODE_TRACKING)			TM.mousePressed(x, y, button);
@@ -236,7 +236,7 @@ void testApp::mousePressed(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 	
 	if (mode == MODE_TRACKING)			TM.mouseReleased();
 	if (mode == MODE_CALIBRATING)		CM.mouseReleased(x,y,button);
@@ -244,6 +244,6 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::resized(int w, int h){
+void ofApp::resized(int w, int h){
 
 }

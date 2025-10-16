@@ -36,10 +36,10 @@ void brightDarkFinder::drawAutoThresholdBrightnessGraph(int x, int y, bool bErro
 	ofEndShape(false);
 	
 	ofSetColor(255, 0, 0);
-	ofLine(x, pixelAvginTenframes + y, x + averageVec.size(), pixelAvginTenframes + y);
+	ofDrawLine(x, pixelAvginTenframes + y, x + averageVec.size(), pixelAvginTenframes + y);
 	
 	ofSetColor(255, 255, 255);
-	ofRect(x, y, 320, 255);
+	ofDrawRectangle(x, y, 320, 255);
 	
 	ofDrawBitmapString("Threshold(Bright/Dark)", x + 1, y + 255 + 12);
 	

@@ -1,5 +1,5 @@
-#ifndef _TEST_APP
-#define _TEST_APP
+#ifndef _OF_APP
+#define _OF_APP
 
 
 #include "ofMain.h"
@@ -18,13 +18,13 @@ enum{
 
 };
 
-#include "eyePlotterTestApp.h"
+#include "eyePlotterofApp.h"
 
-class testApp : public ofBaseApp {
+class ofApp : public ofBaseApp {
 
 	public:
 
-		testApp();
+		ofApp();
 		void setup();
 		void update();
 		void draw();
@@ -43,7 +43,7 @@ class testApp : public ofBaseApp {
 		calibrationManager		CM;
 	
 		buttonTrigger			BT;
-		eyePlotterTestApp	eyeApp;
+		eyePlotterofApp	eyeApp;
 		typingScene				typeScene;
 		pongScene				ponger;
 
