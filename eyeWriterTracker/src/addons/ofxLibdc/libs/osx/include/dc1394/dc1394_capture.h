@@ -21,6 +21,9 @@
 
 #include <dc1394_log.h>
 #include <dc1394_video.h>
+#if defined(__APPLE__)
+  #include <CoreFoundation/CoreFoundation.h>
+#endif
 
 #ifndef __DC1394_CAPTURE_H__
 #define __DC1394_CAPTURE_H__

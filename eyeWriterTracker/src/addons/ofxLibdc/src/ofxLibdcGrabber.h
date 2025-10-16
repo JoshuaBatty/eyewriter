@@ -20,19 +20,25 @@
 class ofxLibdcGrabber : public ofxLibdc, public ofBaseVideo {
 public:
 	ofxLibdcGrabber();
-	ofTexture& getTextureReference();
-	void setUseTexture(bool useTexture);
-	unsigned char* getPixels();
-	ofImage& getBuffer();
-	void update();
-	void grabFrame();
-	void draw(float x, float y);
-	void draw(float x, float y, float w, float h);
-	float getWidth();
-	float getHeight();
-	bool isFrameNew();
-	void close();
+		ofTexture& getTextureReference();
+		void setUseTexture(bool useTexture);
+		ofPixels& getPixels() override;
+		const ofPixels& getPixels() const override;
+		unsigned char* getPixelsData();
+		const unsigned char* getPixelsData() const;
+		ofImage& getBuffer();
+		void update() override;
+		void grabFrame();
+		void draw(float x, float y) const;
+		void draw(float x, float y, float w, float h) const;
+		float getWidth() const;
+		float getHeight() const;
+		bool isFrameNew() const override;
+		void close() override;
+		bool isInitialized() const override;
+		bool setPixelFormat(ofPixelFormat pixelFormat) override;
+		ofPixelFormat getPixelFormat() const override;
 protected:
 	ofImage buffer;
-	bool newFrame;
+	mutable bool newFrame;
 };
