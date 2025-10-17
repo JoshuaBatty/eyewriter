@@ -31,7 +31,7 @@ void grafIO::saveTag(strokeGroup & tag, string filename)
 {
 	
 	constructGML(tag);
-	xml.saveFile(filename);
+	xml.save(filename);
 	
 	
 }
@@ -265,7 +265,7 @@ void grafIO::saveStateAndFileName(vector <strokeGroup> & tags, string filename, 
 	//----------------------
 	
 	
-	xmlOut.saveFile(filename);
+	xmlOut.save(filename);
 	//-----------------------------------------------------------------
 }
 
@@ -274,7 +274,7 @@ void grafIO::loadState(vector <strokeGroup> & tags, string filename){
 	
 	ofxXmlSettings xmlIn;
 	
-	xmlIn.loadFile(filename);
+	xmlIn.load(filename);
 	
 	//tags.clear();
 	

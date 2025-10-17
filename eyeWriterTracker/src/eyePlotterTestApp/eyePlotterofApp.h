@@ -15,7 +15,7 @@
 
 #include "defines.h"
 
-class eyePlotterTestApp{
+class eyePlotterofApp{
 
 	public:
 

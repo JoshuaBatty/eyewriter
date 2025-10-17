@@ -216,7 +216,7 @@ class strokeGroup{
 			updateBoundingRect();
 			ofPushStyle();
 				ofNoFill();
-				ofRect( rect.x, rect.y, rect.width, rect.height);
+				ofDrawRectangle( rect.x, rect.y, rect.width, rect.height);
 			ofPopStyle();
 		}
 		

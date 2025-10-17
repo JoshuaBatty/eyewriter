@@ -134,11 +134,11 @@ class buttonTrigger : public buttonRect{
 			ofSetColor(120 - pctActive, 120+pctActive*2, 120 - pctActive, opacity);
 		}
 		
-		ofRect(x, y, width, height); 
+		ofDrawRectangle(x, y, width, height); 
 
 		ofNoFill();
 		ofSetColor(30, 30, 30, opacity);
-		ofRect(x, y, width, height); 
+		ofDrawRectangle(x, y, width, height);
 
 		if (!bHasFont){
 			float textWidth = 8.0f * displayText.length();
@@ -178,7 +178,7 @@ class buttonTrigger : public buttonRect{
 		ofSetColor(fromString(s));
 		
 		float pctActive = ofMap(pct, 0.0, maxCount, 0.0, 110.0);		
-		ofRect(x, y, width, height); 
+		ofDrawRectangle(x, y, width, height);
 		if (pct>.1){
 			ofPushStyle();
 			ofSetLineWidth(4);
@@ -190,7 +190,7 @@ class buttonTrigger : public buttonRect{
 				ofSetColor(120+pctActive*2, 120+pctActive*2, 120 + pctActive*2, 255);
 			}
 				
-			ofRect(x, y, width, height); 
+			ofDrawRectangle(x, y, width, height);
 			ofPopStyle();
 		}
 	}

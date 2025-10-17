@@ -185,7 +185,7 @@ class renderManager{
 					ofSetColor(curStyle.colors["strokeColor"]);
 					ofSetLineWidth(curStyle.atts["strokeWeight"]);
 					for(int p = 0; p < curStroke.pts.size(); p++){
-						ofLine(curStroke.pts[p].x, curStroke.pts[p].y,curStroke.pts[p].x + shiftX, curStroke.pts[p].y + shiftY);
+						ofDrawLine(curStroke.pts[p].x, curStroke.pts[p].y,curStroke.pts[p].x + shiftX, curStroke.pts[p].y + shiftY);
 					}
 					}
 					////////////////////////////////////////////////////////////////
@@ -322,7 +322,7 @@ class renderManager{
 								for (int p = 0; p < curStroke.pts.size() - 1; p++){
 									float offset = 3+curStyle.atts["strokeWeight"];
 									ofFill();
-									ofTriangle(curStroke.pts[p].x, curStroke.pts[p].y, curStroke.pts[p+1].x + offset,
+									ofDrawTriangle(curStroke.pts[p].x, curStroke.pts[p].y, curStroke.pts[p+1].x + offset,
 											   curStroke.pts[p+1].y + offset, curStroke.pts[p+1].x - offset,
 											   curStroke.pts[p+1].y - offset);
 								}

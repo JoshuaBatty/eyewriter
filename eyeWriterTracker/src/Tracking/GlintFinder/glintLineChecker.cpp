@@ -39,7 +39,8 @@ void glintLineChecker::update(ofxCvGrayscaleImage & eyeImg, int nGlints, ofxCvCo
 	if (nGlints == 2) {
 		
 		lineSegments.clear();
-		unsigned char * pixels = eyeImg.getPixels();
+		ofPixels & eyePixels = eyeImg.getPixels();
+		unsigned char * pixels = eyePixels.getData();
 		
 		for (int j = 0; j < eyeImg.height; j++){
 			lineSegment temp;
@@ -95,7 +96,7 @@ void glintLineChecker::update(ofxCvGrayscaleImage & eyeImg, int nGlints, ofxCvCo
 		}
 		
 		cvSetZero(myStripesImage.getCvImage());
-		unsigned char * stripepixels = myStripesImage.getPixels();
+		unsigned char * stripepixels = myStripesImage.getPixels().getData();
 		
 		for (int i = 0; i < lineSegments.size(); i++) {
 			int startx = lineSegments[i].startx;
@@ -141,4 +142,3 @@ void glintLineChecker::draw(int x, int y){
 
 	ofDisableAlphaBlending();
 }
-

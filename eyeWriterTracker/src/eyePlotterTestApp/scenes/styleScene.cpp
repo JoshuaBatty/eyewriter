@@ -401,18 +401,18 @@ void styleScene::draw(){
 		ofPushStyle();
 		ofFill();
 		ofSetColor(255, 255, 255);
-		ofCircle(mx, my, 9);
+		ofDrawCircle(mx, my, 9);
 		ofSetColor(0,0,0);
-		ofCircle(mx, my, 6);
+		ofDrawCircle(mx, my, 6);
 		ofPopStyle();
 	}
 	else if( testState == BUTTON_NONE ){
 		ofSetColor(0, 0, 0);
 		ofNoFill();
-		ofCircle(mx, my, 9);
+		ofDrawCircle(mx, my, 9);
 	}else if(testState == BUTTON_STARTED ){
 		ofFill();
-		ofCircle(mx, my, 5);
+		ofDrawCircle(mx, my, 5);
 	}
 	
 	ofPopStyle();

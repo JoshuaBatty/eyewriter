@@ -234,8 +234,8 @@ void glintFinder::drawLineOnBrightGlint(float x, float y, float width, float hei
 //--------------------------------------------------------------------
 void glintFinder::drawCross(ofPoint & pos, float x, float y, float width, float height, float len) {
 	
-	ofLine(x + (pos.x * width/w), y + (pos.y * height/h) - len, x + (pos.x * width/w), y + (pos.y * height/h) + len);
-	ofLine(x + (pos.x * width/w) - len, y + (pos.y * height/h), x + (pos.x * width/w) + len, y + (pos.y * height/h));
+	ofDrawLine(x + (pos.x * width/w), y + (pos.y * height/h) - len, x + (pos.x * width/w), y + (pos.y * height/h) + len);
+	ofDrawLine(x + (pos.x * width/w) - len, y + (pos.y * height/h), x + (pos.x * width/w) + len, y + (pos.y * height/h));
 }
 
 //--------------------------------------------------------------------

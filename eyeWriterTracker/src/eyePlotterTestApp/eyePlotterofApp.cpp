@@ -1,4 +1,4 @@
-#include "eyePlotterTestApp.h"
+#include "eyePlotterofApp.h"
 
 int buttonCount = 22;
 float rate = 1.8;
@@ -14,7 +14,7 @@ float timer = -5.0;
 float smoothPct = 0.4;
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::setup(){
+void eyePlotterofApp::setup(){
 
 	scenes.push_back(&drawing);
 	scenes.push_back(&manip);
@@ -53,7 +53,7 @@ void eyePlotterTestApp::setup(){
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::update(float mouseX, float mouseY){
+void eyePlotterofApp::update(float mouseX, float mouseY){
 	
 	float mousex = mouseX;
 	float mousey = mouseY;
@@ -80,7 +80,7 @@ void eyePlotterTestApp::update(float mouseX, float mouseY){
 
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::draw(){
+void eyePlotterofApp::draw(){
 	ofPushStyle();
 
 		ofFill();
@@ -106,7 +106,7 @@ void eyePlotterTestApp::draw(){
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::keyPressed  (int key){
+void eyePlotterofApp::keyPressed  (int key){
 
 	//GHETTO SETTINGS QUICKLY HACKED
 	
@@ -144,32 +144,32 @@ void eyePlotterTestApp::keyPressed  (int key){
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::keyReleased(int key){
+void eyePlotterofApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::mouseMoved(int x, int y ){
+void eyePlotterofApp::mouseMoved(int x, int y ){
 
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::mouseDragged(int x, int y, int button){
+void eyePlotterofApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::mousePressed(int x, int y, int button){
+void eyePlotterofApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::mouseReleased(int x, int y, int button){
+void eyePlotterofApp::mouseReleased(int x, int y, int button){
 	
 }
 
 //--------------------------------------------------------------
-void eyePlotterTestApp::resized(int w, int h){
+void eyePlotterofApp::resized(int w, int h){
 
 }
 

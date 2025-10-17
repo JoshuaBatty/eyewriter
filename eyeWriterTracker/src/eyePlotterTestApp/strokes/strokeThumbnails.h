@@ -36,7 +36,7 @@ class strokeThumbnails{
 			float scaleW = tmpRect.width * ( drawableRect.height / tmpRect.height);
 			
 			ofSetColor(0xcccccc);
-			ofRect(drawableRect.x + currentX - scaleW, drawableRect.y, scaleW, drawableRect.height);
+			ofDrawRectangle(drawableRect.x + currentX - scaleW, drawableRect.y, scaleW, drawableRect.height);
 			
 			ofSetColor(33,33,33);
 			ofPushMatrix();

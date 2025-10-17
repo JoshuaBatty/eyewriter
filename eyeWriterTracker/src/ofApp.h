@@ -43,7 +43,7 @@ class ofApp : public ofBaseApp {
 		calibrationManager		CM;
 	
 		buttonTrigger			BT;
-		eyePlotterofApp	eyeApp;
+		eyePlotterofApp			eyeApp;
 		typingScene				typeScene;
 		pongScene				ponger;
 

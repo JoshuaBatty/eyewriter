@@ -313,17 +313,17 @@ void manipulationScene::draw(){
 		ofPushStyle();
 			ofFill();
 			ofSetColor(255, 255, 255);
-			ofCircle(mx, my, 9);
+			ofDrawCircle(mx, my, 9);
 			ofSetColor(0,0,0);
-			ofCircle(mx, my, 6);
+			ofDrawCircle(mx, my, 6);
 		ofPopStyle();
 	}
 	else if( testState == BUTTON_NONE ){
 		ofNoFill();
-		ofCircle(mx, my, 9);
+		ofDrawCircle(mx, my, 9);
 	}else if(testState == BUTTON_STARTED ){
 		ofFill();
-		ofCircle(mx, my, 5);
+		ofDrawCircle(mx, my, 5);
 	}
 	
 	//printf("whichGroup %i\n", whichGroup);
@@ -345,7 +345,7 @@ void manipulationScene::draw(){
 		ofEnableAlphaBlending();
 		ofNoFill();
 		ofSetColor(0, 0, 0, 100);
-		ofRect(rect.x, rect.y, rect.width, rect.height);
+		ofDrawRectangle(rect.x, rect.y, rect.width, rect.height);
 		ofPopStyle();
 	}
 	

@@ -9,7 +9,7 @@ class gmlReader
         gmlReader();
         virtual ~gmlReader();
 		
-		void loadGML( string filename );
+		void loadGML( std::string filename );
 		
 	
 		ofxXmlSettings	xml;

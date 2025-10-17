@@ -165,8 +165,8 @@ void drawingScene::update(float mouseX, float mouseY){
 		//if we have more than 2 points check to see if the current point is close enough to the first point to close it completely
 		if( groups.back().getLastStrokeNumPoints() >= 3 ){
 			
-			ofxPoint2f point = groups.back().strokes.back().pts[0];
-			ofxPoint2f mouse(mx, my);
+			ofPoint point = groups.back().strokes.back().pts[0];
+			ofPoint mouse(mx, my);
 			
 			if( point.distance(mouse) <= 12 ){
 				mx = point.x;
@@ -202,11 +202,11 @@ void drawingScene::draw(){
 				ofSetColor(0, 0, 0, 20);
 		
 				for(int x = SIDE_GUI_X; x < w; x+= 20){
-					ofLine(x, 0, x, h);
+					ofDrawLine(x, 0, x, h);
 				}
 				
 				for(int y = 0; y < h; y+= 20){
-					ofLine(SIDE_GUI_X, y, w, y);
+					ofDrawLine(SIDE_GUI_X, y, w, y);
 				}
 			
 			ofPopStyle();
@@ -224,7 +224,7 @@ void drawingScene::draw(){
 				
 				glLineStipple(1, 0x3F07 ); 
 				glEnable( GL_LINE_STIPPLE ); 			
-				ofLine(mx, my, pt.x, pt.y);
+				ofDrawLine(mx, my, pt.x, pt.y);
 				glDisable(GL_LINE_STIPPLE);
 			}
 		}
@@ -256,17 +256,17 @@ void drawingScene::draw(){
 		ofPushStyle();
 			ofFill();
 			ofSetColor(255, 255, 255);
-			ofCircle(mx, my, 9);
+			ofDrawCircle(mx, my, 9);
 			ofSetColor(0,0,0);
-			ofCircle(mx, my, 6);
+			ofDrawCircle(mx, my, 6);
 		ofPopStyle();
 	}
 	else if( testState == BUTTON_NONE ){
 		ofNoFill();
-		ofCircle(mx, my, 9);
+		ofDrawCircle(mx, my, 9);
 	}else if(testState == BUTTON_STARTED ){
 		ofFill();
-		ofCircle(mx, my, 5);
+		ofDrawCircle(mx, my, 5);
 	}
 	
 	ofPopStyle();

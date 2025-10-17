@@ -11,14 +11,14 @@ gmlReader::~gmlReader()
     //dtor
 }
 
-void gmlReader::loadGML( string filename )
+void gmlReader::loadGML( std::string filename )
 {
 	
 	xml.clear();
 	
-	if( xml.loadFile(filename) ) cout << "Opened file" << filename << endl;
+	if( xml.load(filename) ) std::cout << "Opened file" << filename << std::endl;
 	else{
-		cout << "Could not open file!" << endl;
+		std::cout << "Could not open file!" << std::endl;
 		return;
 	}
 	

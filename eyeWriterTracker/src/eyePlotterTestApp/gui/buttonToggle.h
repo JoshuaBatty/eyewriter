@@ -93,11 +93,11 @@ class buttonToggle : public buttonRect{
 			ofSetColor(10 + pctActive, 240 - pctActive, 10 + pctActive, opacity);
 			//ofSetColor(100 + pctActive, 180, 100 + pctActive);
 		}
-		ofRect(x, y, width, height); 
+		ofDrawRectangle(x, y, width, height);
 
 		ofNoFill();
 		ofSetColor(30, 30, 30, opacity);
-		ofRect(x, y, width, height); 
+		ofDrawRectangle(x, y, width, height); 
 
 		float textWidth = 8.0f * displayText[active].length();
 		float remainX = (width - textWidth)/2;
