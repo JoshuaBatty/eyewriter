@@ -101,8 +101,8 @@ class stroke{
 			if( lastCircle ){
 				ofFill();
 				if( pts.size() ){
-					ofCircle(pts.back().x, pts.back().y, 4);
-				} 
+					ofDrawCircle(pts.back().x, pts.back().y, 4);
+				}
 			}
 			ofPopStyle();
 		}

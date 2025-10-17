@@ -45,8 +45,11 @@ public:
 	}
 	void getThreadedPixels(ofxCvColorImage & colorImg, bool & bNeedUpdate) {
 		lock();
-		colorImg.setFromPixels(this->getPixels(), getWidth(), getHeight());
-		bNeedUpdate = true;
+		ofPixels& pixels = this->getPixels();
+		if(pixels.isAllocated()){
+			colorImg.setFromPixels(pixels);
+			bNeedUpdate = true;
+		}
 		unlock();
 	}
 };

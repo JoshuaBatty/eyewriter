@@ -26,7 +26,7 @@
 
 #include "appUtils.h"
 
-#include "fileHelper.h"
+#include "ofxFileHelper.h"
 
 #include "baseScene.h"
 

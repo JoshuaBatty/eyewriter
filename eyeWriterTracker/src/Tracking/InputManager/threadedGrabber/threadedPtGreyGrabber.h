@@ -47,8 +47,11 @@ public:
 	}
 	void getThreadedPixels(ofxCvGrayscaleImage & grayImg, bool & bNeedUpdate) {
 		lock();
-		grayImg.setFromPixels(this->getPixels(), width, height);
-		bNeedUpdate = true;
+		ofPixels& pixels = this->getPixels();
+		if(pixels.isAllocated()){
+			grayImg.setFromPixels(pixels);
+			bNeedUpdate = true;
+		}
 		unlock();
 	}
 };

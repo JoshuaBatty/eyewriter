@@ -134,14 +134,14 @@ void ofApp::draw(){
 		if( mode != MODE_DRAW ){	
 			ofSetColor(0,255,0,120);
 			ofFill();
-			ofCircle(eyeSmoothed.x, eyeSmoothed.y, 20);
+			ofDrawCircle(eyeSmoothed.x, eyeSmoothed.y, 20);
 		}
 	}
 	
 	if (TM.IM.bRecord) {
 		ofSetColor(255, 0, 0);
 		ofFill();
-		ofRect(0, ofGetHeight()-10, 10, 10);
+		ofDrawRectangle(0, ofGetHeight()-10, 10, 10);
 	}
 	
 	if (mode != MODE_TRACKING) {

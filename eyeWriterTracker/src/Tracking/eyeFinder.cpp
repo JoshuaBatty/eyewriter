@@ -217,7 +217,7 @@ void eyeFinder::draw(float x, float y, float width, float height, bool bError){
 	ofNoFill();
 	
 	ofSetColor(255,0,0, 130);
-	ofRect(x + boundingRect.x * width / w, y + boundingRect.y * height / h,
+	ofDrawRectangle(x + boundingRect.x * width / w, y + boundingRect.y * height / h,
 		   boundingRect.width * width / w, boundingRect.height * height / h);
 	
 	float	targetRectTempX = centroid.x - (targetWidth/2);
@@ -225,12 +225,12 @@ void eyeFinder::draw(float x, float y, float width, float height, bool bError){
 
 	if (bFoundOne){
 		ofSetColor(0,0,255, 150);
-		ofRect(x + targetRectTempX * width / w, y + targetRectTempY * height / h,
+		ofDrawRectangle(x + targetRectTempX * width / w, y + targetRectTempY * height / h,
 			   targetWidth  * width / w, targetHeight * height / h);
 	}
 		
 	ofSetColor(255, 0, 0,100);
-	ofRect(findingRect.x * div * width/w + x, findingRect.y * div * height/h + y, findingRect.width * div * width/w, findingRect.height * div * height/h);
+	ofDrawRectangle(findingRect.x * div * width/w + x, findingRect.y * div * height/h + y, findingRect.width * div * width/w, findingRect.height * div * height/h);
 	
 	if (bFoundOne){
 		ofSetColor(255,255,255);

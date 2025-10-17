@@ -1,110 +1,224 @@
 #include "pocoHttpPostForm.h"
+#include <sstream>
+#include <iomanip>
+#include <cctype>
 
+namespace {
 
-pocoHttpPostForm::pocoHttpPostForm()
-{
-	bLastFormSubmitted	= false;
-	bSubmitting			= false;
-	timeoutSeconds		= 40;		// default timeout
+// Minimal URL encoder for x-www-form-urlencoded
+static std::string urlEncode(const std::string& s) {
+	std::ostringstream oss;
+	oss.fill('0');
+	oss << std::hex << std::uppercase;
 
+	for (unsigned char c : s) {
+		if ((c >= 'A' && c <= 'Z') ||
+			(c >= 'a' && c <= 'z') ||
+			(c >= '0' && c <= '9') ||
+			c == '-' || c == '_' || c == '.' || c == '~') {
+			oss << c;
+		} else if (c == ' ') {
+			oss << '+';
+		} else {
+			oss << '%' << std::setw(2) << int(c);
+		}
+	}
+	return oss.str();
 }
 
-pocoHttpPostForm::~pocoHttpPostForm()
-{
-    //dtor
+static std::string buildFormBody(const std::vector<std::string>& names,
+								 const std::vector<std::string>& values) {
+	std::ostringstream body;
+	for (size_t i = 0; i < names.size(); ++i) {
+		if (i) body << '&';
+		body << urlEncode(names[i]) << '=' << urlEncode(values[i]);
+	}
+	return body.str();
 }
 
-void pocoHttpPostForm::setUrl( string surl )
-{
-	url.clear();
-	url = surl;
+} // namespace
+
+pocoHttpPostForm::pocoHttpPostForm() {
+	timeoutSeconds = 40; // keep original default
 }
 
-void pocoHttpPostForm::submit()
-{
+pocoHttpPostForm::~pocoHttpPostForm() {}
 
-	bSubmitting = true;
-		NonThreadedFunction();
-	bSubmitting = false;
-
+void pocoHttpPostForm::setUrl(std::string surl) {
+	url = std::move(surl);
 }
 
-void pocoHttpPostForm::clearFormData()
-{
+void pocoHttpPostForm::addForm(std::string name, std::string value) {
+	formNames.push_back(std::move(name));
+	formValues.push_back(std::move(value));
+}
+
+void pocoHttpPostForm::clearFormData() {
 	lock();
-		formNames.clear();
-		formValues.clear();
+	formNames.clear();
+	formValues.clear();
 	unlock();
 }
 
-void pocoHttpPostForm::addForm( string name, string value )
-{
-	formNames.push_back(name);
-	formValues.push_back(value);
-
+void pocoHttpPostForm::submit() {
+	bSubmitting = true;
+	NonThreadedFunction();
+	bSubmitting = false;
 }
 
-void pocoHttpPostForm::threadedFunction(){
-
+void pocoHttpPostForm::threadedFunction() {
+	// Kept empty to match legacy behavior
 }
 
-void pocoHttpPostForm::NonThreadedFunction()
-{
-			try
-			{
-				cout << "trying to submit" << endl;
+bool pocoHttpPostForm::wasLastSubmitted() {
+	return bLastFormSubmitted;
+}
 
-				bLastFormSubmitted = false;
+void pocoHttpPostForm::NonThreadedFunction() {
+	bLastFormSubmitted = false;
 
-				URI uri( url );
-				std::string path(uri.getPathAndQuery());
-				if (path.empty()) path = "/";
+	if (url.empty()) {
+		ofLogError("pocoHttpPostForm") << "URL is empty; aborting.";
+		return;
+	}
 
-				HTTPClientSession session(uri.getHost(), uri.getPort());
-				HTTPRequest req(HTTPRequest::HTTP_POST, path, HTTPMessage::HTTP_1_1);
+	// Build x-www-form-urlencoded body from form fields
+	const std::string body = buildFormBody(formNames, formValues);
 
-				session.setTimeout(Poco::Timespan(timeoutSeconds,0));
+	// Prepare request using oF’s HTTP structures
+	ofHttpRequest req;
+	req.url            = url;
+	req.method         = ofHttpRequest::POST;                 // POST
+	req.contentType    = "application/x-www-form-urlencoded";
+	req.body           = body;
+	req.timeoutSeconds = static_cast<size_t>(std::max(0, timeoutSeconds));
 
-				// create the form data to send
-				HTMLForm pocoForm(HTMLForm::ENCODING_URL);
+	// Optional: add headers (User-Agent helps with some endpoints)
+	req.headers["User-Agent"] = "openFrameworks/URLFileLoader";
 
-				// form values
-				for(unsigned int i=0; i< formNames.size(); i++){
-					const std::string name = formNames[i].c_str();
-					const std::string val  = formValues[i].c_str();
-					pocoForm.set(name, val);
-				}
+	// Synchronous request; returns ofHttpResponse
+	// Note: we instantiate a loader locally; you can also use the global helpers.
+	ofURLFileLoader loader;
+	ofHttpResponse resp = loader.handleRequest(req);
 
-				pocoForm.prepareSubmit(req);
+	// Consider 2xx as success
+	bLastFormSubmitted = (resp.status >= 200 && resp.status < 300);
 
-				printf("pocoForm writing\n");
-
-				try{
-				    pocoForm.write(session.sendRequest(req));
-
-                    //HTTPResponse res;
-                    //istream& rs = session.receiveResponse(res);
-                    //cout << "rs " << res.getReason() << endl;
-
-                    //if( res.getStatus() == 200 )
-
-				}catch (Exception& exc){
-                    printf("pocoForm write error \n");
-				}
-
-                bLastFormSubmitted = true;
-				bSubmitting = false;
-
-			}catch (Exception& exc){
-				cout << "Exception thrown!" << endl;
-				// ofxHttpEvents.notifyNewError("time out ");
-			   // if(verbose) std::cerr << exc.displayText() << std::endl;
-			}
-
+	if (!bLastFormSubmitted) {
+		ofLogWarning("pocoHttpPostForm")
+			<< "HTTP POST to " << url << " failed, status=" << resp.status
+			<< " error=" << resp.error;
+	}
 }
 
 
-bool pocoHttpPostForm::wasLastSubmitted(){
-	return true;
-}
-
+//#include "pocoHttpPostForm.h"
+//
+//
+//pocoHttpPostForm::pocoHttpPostForm()
+//{
+//	bLastFormSubmitted	= false;
+//	bSubmitting			= false;
+//	timeoutSeconds		= 40;		// default timeout
+//
+//}
+//
+//pocoHttpPostForm::~pocoHttpPostForm()
+//{
+//    //dtor
+//}
+//
+//void pocoHttpPostForm::setUrl( string surl )
+//{
+//	url.clear();
+//	url = surl;
+//}
+//
+//void pocoHttpPostForm::submit()
+//{
+//
+//	bSubmitting = true;
+//		NonThreadedFunction();
+//	bSubmitting = false;
+//
+//}
+//
+//void pocoHttpPostForm::clearFormData()
+//{
+//	lock();
+//		formNames.clear();
+//		formValues.clear();
+//	unlock();
+//}
+//
+//void pocoHttpPostForm::addForm( string name, string value )
+//{
+//	formNames.push_back(name);
+//	formValues.push_back(value);
+//
+//}
+//
+//void pocoHttpPostForm::threadedFunction(){
+//
+//}
+//
+//void pocoHttpPostForm::NonThreadedFunction()
+//{
+//			try
+//			{
+//				cout << "trying to submit" << endl;
+//
+//				bLastFormSubmitted = false;
+//
+//				URI uri( url );
+//				std::string path(uri.getPathAndQuery());
+//				if (path.empty()) path = "/";
+//
+//				HTTPClientSession session(uri.getHost(), uri.getPort());
+//				HTTPRequest req(HTTPRequest::HTTP_POST, path, HTTPMessage::HTTP_1_1);
+//
+//				session.setTimeout(Poco::Timespan(timeoutSeconds,0));
+//
+//				// create the form data to send
+//				HTMLForm pocoForm(HTMLForm::ENCODING_URL);
+//
+//				// form values
+//				for(unsigned int i=0; i< formNames.size(); i++){
+//					const std::string name = formNames[i].c_str();
+//					const std::string val  = formValues[i].c_str();
+//					pocoForm.set(name, val);
+//				}
+//
+//				pocoForm.prepareSubmit(req);
+//
+//				printf("pocoForm writing\n");
+//
+//				try{
+//				    pocoForm.write(session.sendRequest(req));
+//
+//                    //HTTPResponse res;
+//                    //istream& rs = session.receiveResponse(res);
+//                    //cout << "rs " << res.getReason() << endl;
+//
+//                    //if( res.getStatus() == 200 )
+//
+//				}catch (Exception& exc){
+//                    printf("pocoForm write error \n");
+//				}
+//
+//                bLastFormSubmitted = true;
+//				bSubmitting = false;
+//
+//			}catch (Exception& exc){
+//				cout << "Exception thrown!" << endl;
+//				// ofxHttpEvents.notifyNewError("time out ");
+//			   // if(verbose) std::cerr << exc.displayText() << std::endl;
+//			}
+//
+//}
+//
+//
+//bool pocoHttpPostForm::wasLastSubmitted(){
+//	return true;
+//}
+//

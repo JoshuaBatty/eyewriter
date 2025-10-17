@@ -43,7 +43,7 @@ void saverScene::setup(){
 	clearLoaded.setup("clear loaded tags", 840, 20, 140, 100);
 
 	ofxXmlSettings xml;
-	xml.loadFile("settings.xml");
+	xml.load("settings.xml");
 	
 	loadPrevious.setup("load prev tag", 10, 300, 130, 80);
 	loadPrevious.setRetrigger(true);
@@ -97,18 +97,18 @@ void saverScene::loadState(){
 
 void saverScene::checkDirExists(){
 	
-	if( !fileHelper::doesDirectoryExist("tags") ){
-		fileHelper::makeDirectory("tags/");
-		fileHelper::makeDirectory("tags/images/");
-		fileHelper::makeDirectory("tags/gml/");
+	if( !ofxFileHelper::doesDirectoryExist("tags") ){
+		ofxFileHelper::makeDirectory("tags/");
+		ofxFileHelper::makeDirectory("tags/images/");
+		ofxFileHelper::makeDirectory("tags/gml/");
 	}
 	
-	if( !fileHelper::doesDirectoryExist("tags/images/") ){
-		fileHelper::makeDirectory("tags/images/");
+	if( !ofxFileHelper::doesDirectoryExist("tags/images/") ){
+		ofxFileHelper::makeDirectory("tags/images/");
 	}
 			
-	if( !fileHelper::doesDirectoryExist("tags/gml/") ){
-		fileHelper::makeDirectory("tags/gml/");
+	if( !ofxFileHelper::doesDirectoryExist("tags/gml/") ){
+		ofxFileHelper::makeDirectory("tags/gml/");
 	}
 		
 
@@ -199,7 +199,7 @@ void saverScene::draw(){
 	ofFill();
 	
 	ofSetColor(0xFFFFFF);
-	ofRect(SIDE_GUI_X, 0, ofGetWidth(), ofGetHeight());
+	ofDrawRectangle(SIDE_GUI_X, 0, ofGetWidth(), ofGetHeight());
 	
 	if( tmpGroups.size() ){
 		ofPushStyle();
@@ -218,7 +218,7 @@ void saverScene::draw(){
 	if( grabScreen ){
 		ofImage img;
 		img.grabScreen(SIDE_GUI_X, 0, ofGetWidth()-SIDE_GUI_X, ofGetHeight());
-		img.saveImage(imagePath + imageFilename);
+		img.save(imagePath + imageFilename);
 		
 		if( !uploadImage(imagePath, imageFilename) ){
 			printf("ERROR UPLOADING VIA FTP\n");
@@ -237,14 +237,14 @@ void saverScene::draw(){
 		ofPushStyle();
 			ofFill();
 			ofSetColor(255, 255, 255);
-			ofCircle(mx, my, 9);
+			ofDrawCircle(mx, my, 9);
 			ofSetColor(0,0,0);
-			ofCircle(mx, my, 6);
+			ofDrawCircle(mx, my, 6);
 		ofPopStyle();
 	}
 	else{
 		ofNoFill();
-		ofCircle(mx, my, 9);
+		ofDrawCircle(mx, my, 9);
 	}
 	
 	

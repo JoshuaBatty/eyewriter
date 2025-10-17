@@ -85,10 +85,10 @@ void eyePlotterofApp::draw(){
 
 		ofFill();
 		ofSetColor(10, 20, 10);
-		ofRect(0, 0, SIDE_GUI_X, ofGetHeight());
+		ofDrawRectangle(0, 0, SIDE_GUI_X, ofGetHeight());
 				
 		ofSetColor(220, 220, 220);
-		ofRect(SIDE_GUI_X, 0, ofGetWidth(), ofGetHeight());	
+		ofDrawRectangle(SIDE_GUI_X, 0, ofGetWidth(), ofGetHeight());	
 
 		nextScene.draw();
 	

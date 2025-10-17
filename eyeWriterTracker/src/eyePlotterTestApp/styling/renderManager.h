@@ -66,8 +66,8 @@ class renderManager{
 						for (float d = 0; d <= 1; d += step ){				
 							float offset = curStyle.outline + curStyle.atts["strokeWeight"];
 							ofFill();
-							//ofCircle(groups[i].strokes[s].pts[p].x + (d*dir).x + shiftX, groups[i].strokes[s].pts[p].y + (d*dir).y + shiftY, offset);
-							//ofCircle(groups[i].strokes[s].pts[p].x + (d*dir).x         , groups[i].strokes[s].pts[p].y + (d*dir).y, offset);
+							//ofDrawCircle(groups[i].strokes[s].pts[p].x + (d*dir).x + shiftX, groups[i].strokes[s].pts[p].y + (d*dir).y + shiftY, offset);
+							//ofDrawCircle(groups[i].strokes[s].pts[p].x + (d*dir).x         , groups[i].strokes[s].pts[p].y + (d*dir).y, offset);
 							
 							glBegin(GL_QUADS);
 							glTexCoord2i(0,0);
@@ -294,8 +294,8 @@ class renderManager{
 									for (float d = 0; d <= 1; d += step ){				
 										float offset = curStyle.atts["strokeWeight"];
 										ofFill();
-										//ofCircle(curStroke.pts[p].x + (d*dir).x + shiftX, curStroke.pts[p].y + (d*dir).y + shiftY, offset);
-										//ofCircle(curStroke.pts[p].x + (d*dir).x         , curStroke.pts[p].y + (d*dir).y, offset);
+										//ofDrawCircle(curStroke.pts[p].x + (d*dir).x + shiftX, curStroke.pts[p].y + (d*dir).y + shiftY, offset);
+										//ofDrawCircle(curStroke.pts[p].x + (d*dir).x         , curStroke.pts[p].y + (d*dir).y, offset);
 										
 										glBegin(GL_QUADS);
 										glTexCoord2i(0,0);

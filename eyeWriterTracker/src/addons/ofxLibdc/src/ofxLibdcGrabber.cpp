@@ -28,7 +28,7 @@ ofxLibdcGrabber::ofxLibdcGrabber() :
 }
 
 ofTexture& ofxLibdcGrabber::getTextureReference() {
-	return buffer.getTextureReference();
+	return buffer.getTexture();
 }
 
 void ofxLibdcGrabber::setUseTexture(bool useTexture) {
