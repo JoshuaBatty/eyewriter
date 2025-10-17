@@ -85,7 +85,7 @@ class guiTypeVairableLister : public guiBaseObject{
 					//draw the background
 					ofFill();
 					glColor4fv(bgColor.getColorF());
-					ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+					ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 					float lineH = hitArea.height / (float) MAX(1, vars.size());
 					
@@ -98,7 +98,7 @@ class guiTypeVairableLister : public guiBaseObject{
 						
 						if( i != vars.size()-1){
 							glColor4fv(outlineColor.getColorF());
-							ofLine(x, ly, x + hitArea.width, ly);
+							ofDrawLine(x, ly, x + hitArea.width, ly);
 						}
 						
 						glColor4fv(textColor.getColorF());
@@ -112,7 +112,7 @@ class guiTypeVairableLister : public guiBaseObject{
 					//draw the outline
 					ofNoFill();
 					glColor4fv(outlineColor.getColorF());
-					ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+					ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 				glPopMatrix();
 			ofPopStyle();
 		}

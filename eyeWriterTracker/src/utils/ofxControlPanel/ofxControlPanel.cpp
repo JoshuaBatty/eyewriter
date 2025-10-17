@@ -87,7 +87,7 @@ void ofxControlPanel::setup(string controlPanelName, float panelX, float panelY,
 
 //-----------------------------
 void ofxControlPanel::loadFont( string fontName, int fontsize ){
-    guiTTFFont.loadFont(fontName, fontsize);
+    guiTTFFont.load(fontName, fontsize);
     bool okay = guiTTFFont.isLoaded();
 	guiBaseObject::setFont(&guiTTFFont);
 
@@ -737,7 +737,7 @@ void ofxControlPanel::loadSettings(string xmlFile){
     if( posLastSlash > 0) settingsDirectory.erase(settingsDirectory.begin()+ posLastSlash+1, settingsDirectory.end()  );
     else settingsDirectory = "";
 
-    settings.loadFile(currentXmlFile);
+    settings.load(currentXmlFile);
     usingXml = true;
 
     for(unsigned int i = 0; i < xmlObjects.size(); i++){
@@ -761,7 +761,7 @@ void ofxControlPanel::reloadSettings(){
 
     if( currentXmlFile != "" ){
 
-        bool loadedOK = settings.loadFile(currentXmlFile);
+        bool loadedOK = settings.load(currentXmlFile);
         if(loadedOK)
         {
             usingXml = true;
@@ -808,9 +808,9 @@ void ofxControlPanel::saveSettings(string xmlFile){
         xmlName += ".xml";
         xmlName = settingsDirectory + xmlName;
 
-        settings.saveFile(xmlName);
+        settings.save(xmlName);
     }
-    settings.saveFile(xmlFile);
+    settings.save(xmlFile);
     currentXmlFile = xmlFile;
     usingXml = true;
 }
@@ -840,12 +840,12 @@ void ofxControlPanel::saveSettings(){
         xmlName += ".xml";
         xmlName = settingsDirectory + xmlName;
 
-        settings.saveFile(xmlName);
+        settings.save(xmlName);
     }
     if(currentXmlFile == "") {
         currentXmlFile = "controlPanelSettings.xml";
     }
-    settings.saveFile(currentXmlFile);
+    settings.save(currentXmlFile);
     usingXml = true;
 }
 
@@ -1032,16 +1032,16 @@ void ofxControlPanel::draw(){
             //draw the background
             ofFill();
             glColor4fv(bgColor.getColorF());
-            ofRect(0, 0, boundingBox.width, panelH);
+            ofDrawRectangle(0, 0, boundingBox.width, panelH);
 
             //draw the outline
             ofNoFill();
             glColor4fv(outlineColor.getColorF());
-            ofRect(0, 0, boundingBox.width, panelH);
-            ofLine(0, topBar.height, boundingBox.width, topBar.height);
+			ofDrawRectangle(0, 0, boundingBox.width, panelH);
+            ofDrawLine(0, topBar.height, boundingBox.width, topBar.height);
         glPopMatrix();
 
-        ofRect(minimizeButton.x, minimizeButton.y, minimizeButton.width, minimizeButton.height);
+		ofDrawRectangle(minimizeButton.x, minimizeButton.y, minimizeButton.width, minimizeButton.height);
 
         ofPushStyle();
             ofFill();
@@ -1049,7 +1049,7 @@ void ofxControlPanel::draw(){
             if( saveDown )glColor4fv(fgColor.getSelectedColorF());
             else glColor4fv(fgColor.getColorF());
 
-            ofRect(saveButton.x, saveButton.y, saveButton.width,saveButton.height);
+			ofDrawRectangle(saveButton.x, saveButton.y, saveButton.width,saveButton.height);
             ofSetColor(255, 255, 255);
 		if(bUseTTFFont) {
 			guiTTFFont.drawString("save", saveButton.x + 3, saveButton.y + saveButton.height -4);
@@ -1066,7 +1066,7 @@ void ofxControlPanel::draw(){
             if( restoreDown )glColor4fv(fgColor.getSelectedColorF());
             else glColor4fv(fgColor.getColorF());
 
-            ofRect(restoreButton.x, restoreButton.y, restoreButton.width,restoreButton.height);
+			ofDrawRectangle(restoreButton.x, restoreButton.y, restoreButton.width,restoreButton.height);
             ofSetColor(255, 255, 255);
 		if(bUseTTFFont) {
 			guiTTFFont.drawString("restore", restoreButton.x + 3, restoreButton.y + restoreButton.height -4);
@@ -1098,13 +1098,13 @@ void ofxControlPanel::draw(){
                         ofPushStyle();
                             ofFill();
                             glColor4fv(fgColor.getSelectedColorF());
-                            ofRect(panelTabs[i].x, panelTabs[i].y, panelTabs[i].width, panelTabs[i].height);
+							ofDrawRectangle(panelTabs[i].x, panelTabs[i].y, panelTabs[i].width, panelTabs[i].height);
                             glColor4fv(outlineColor.getColorF());
                         ofPopStyle();
                     }
                     glColor4fv(outlineColor.getColorF());
                     ofNoFill();
-                    ofRect(panelTabs[i].x, panelTabs[i].y, panelTabs[i].width, panelTabs[i].height);
+					ofDrawRectangle(panelTabs[i].x, panelTabs[i].y, panelTabs[i].width, panelTabs[i].height);
                 }
 
                 glPushMatrix();

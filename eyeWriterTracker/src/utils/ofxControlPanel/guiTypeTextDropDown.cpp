@@ -100,7 +100,7 @@ void guiTypeTextDropDown::render(){
 		//draw the background
 		ofFill();
 		glColor4fv(bgColor.getNormalColorF());
-		ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+		ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 		if(bShowDropDown)
 		{
@@ -118,16 +118,16 @@ void guiTypeTextDropDown::render(){
 
 				ofFill();
 
-				ofRect(bx, by,  boundingBox.width, boxHeight);
+				ofDrawRectangle(bx, by,  boundingBox.width, boxHeight);
 
 				ofNoFill();
 				glColor4fv(outlineColor.getColorF());
-				ofRect(bx, by,  boundingBox.width, boxHeight);
+				ofDrawRectangle(bx, by,  boundingBox.width, boxHeight);
 
 				if(i==0) {
 					ofFill();
 					glColor4fv(outlineColor.getColorF());
-					ofRect(bx + boundingBox.width - boxHeight*0.5, by, boxHeight*0.5, boxHeight*0.5);
+					ofDrawRectangle(bx + boundingBox.width - boxHeight*0.5, by, boxHeight*0.5, boxHeight*0.5);
 				}
 
 				glColor4fv(textColor.getColorF());
@@ -142,16 +142,16 @@ void guiTypeTextDropDown::render(){
 
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(bx, by,  boundingBox.width, boxHeight);
+			ofDrawRectangle(bx, by,  boundingBox.width, boxHeight);
 
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(bx, by,  boundingBox.width, boxHeight);
+			ofDrawRectangle(bx, by,  boundingBox.width, boxHeight);
 
 			ofFill();
 			glColor4fv(outlineColor.getColorF());
 			//ofTriangle(bx + boundingBox.width - 7, by + boxHeight, bx + boundingBox.width - 14, by,bx + boundingBox.width, by);
-			ofRect(bx + boundingBox.width - boxHeight*0.5, by, boxHeight*0.5, boxHeight*0.5);
+			ofDrawRectangle(bx + boundingBox.width - boxHeight*0.5, by, boxHeight*0.5, boxHeight*0.5);
 
 			glColor4fv(textColor.getColorF());
 			displayText.renderString(vecDropList[(int) value.getValueI()], bx + 2, by + boxHeight -4);

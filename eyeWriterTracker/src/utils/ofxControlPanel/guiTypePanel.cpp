@@ -158,7 +158,7 @@ void guiTypePanel::drawLocked(){
 		ofTranslate(lockRect.x, lockRect.y, 0);
 
 		ofSetColor(200, 0, 0);
-		ofRect(0, 0, lockRect.width, lockRect.height);
+		ofDrawRectangle(0, 0, lockRect.width, lockRect.height);
 
 		ofTranslate(LOCK_BORDER, LOCK_BORDER, 0);
 
@@ -169,7 +169,7 @@ void guiTypePanel::drawLocked(){
 		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT/2, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
 
 		ofSetColor(255, 255, 255);
-		ofRect(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
+		ofDrawRectangle(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
 	ofPopMatrix();
 }
 
@@ -180,7 +180,7 @@ void guiTypePanel::drawUnlocked(){
 		ofTranslate(lockRect.x, lockRect.y, 0);
 
 		ofSetColor(0, 0, 0);
-		ofRect(0, 0, lockRect.width, lockRect.height);
+		ofDrawRectangle(0, 0, lockRect.width, lockRect.height);
 
 		ofTranslate(LOCK_BORDER, LOCK_BORDER, 0);
 		ofSetColor(255, 255, 255);
@@ -190,10 +190,10 @@ void guiTypePanel::drawUnlocked(){
 		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT * 0.44, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
 
 		ofSetColor(255, 255, 255);
-		ofRect(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
+		ofDrawRectangle(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
 
 		ofSetColor(0, 0, 0);
-		ofRect(0, LOCK_HEIGHT * 0.5 - LOCK_HEIGHT * 0.25 , LOCK_WIDTH * 0.35, LOCK_HEIGHT * 0.25);
+		ofDrawRectangle(0, LOCK_HEIGHT * 0.5 - LOCK_HEIGHT * 0.25 , LOCK_WIDTH * 0.35, LOCK_HEIGHT * 0.25);
 
 	ofPopMatrix();
 }
@@ -207,12 +207,12 @@ void guiTypePanel::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(0, 0, boundingBox.width, boundingBox.height);
+			ofDrawRectangle(0, 0, boundingBox.width, boundingBox.height);
 
 			//draw the outline
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(0, 0, boundingBox.width, boundingBox.height);
+			ofDrawRectangle(0, 0, boundingBox.width, boundingBox.height);
 
 			if( locked ){
 				drawLocked();

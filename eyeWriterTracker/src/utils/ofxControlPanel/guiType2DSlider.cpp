@@ -62,7 +62,7 @@ void guiType2DSlider::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			//draw the foreground
 
@@ -75,13 +75,13 @@ void guiType2DSlider::render(){
 			glColor4fv(fgColor.getColorF());
 
 			ofSetRectMode(OF_RECTMODE_CENTER);
-			ofRect(bx, by, boxWidth, boxHeight);
+			ofDrawRectangle(bx, by, boxWidth, boxHeight);
 			ofSetRectMode(OF_RECTMODE_CORNER);
 
 			//draw the outline
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 		glPopMatrix();
 

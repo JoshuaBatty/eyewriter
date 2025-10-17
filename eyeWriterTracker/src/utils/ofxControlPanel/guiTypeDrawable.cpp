@@ -72,7 +72,7 @@ void guiTypeDrawable::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			ofDisableAlphaBlending();
 

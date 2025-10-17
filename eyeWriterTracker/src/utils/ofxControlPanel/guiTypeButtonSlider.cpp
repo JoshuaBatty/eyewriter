@@ -11,12 +11,12 @@ void guiTypePlusButton::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			//draw the outline
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			if( value.getValueI() == 1){
 				ofFill();
@@ -45,12 +45,12 @@ void guiTypeMinusButton::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			//draw the outline
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			if( value.getValueI() == 1){
 				ofFill();

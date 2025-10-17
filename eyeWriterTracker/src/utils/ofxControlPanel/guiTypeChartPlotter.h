@@ -109,7 +109,7 @@ class guiTypeChartPlotter : public guiBaseObject{
 					//draw the background
 					ofFill();
 					glColor4fv(bgColor.getColorF());
-					ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+					ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 					float x = hitArea.x;
 					float y = hitArea.y + hitArea.height;
@@ -160,7 +160,7 @@ class guiTypeChartPlotter : public guiBaseObject{
 					//draw the outline
 					ofNoFill();
 					glColor4fv(outlineColor.getColorF());
-					ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+					ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 				glPopMatrix();
 			ofPopStyle();
 		}

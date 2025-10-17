@@ -61,7 +61,7 @@ void guiTypeMultiToggle::render(){
 		//draw the background
 		ofFill();
 		glColor4fv(bgColor.getColorF());
-		ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+		ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 		for(unsigned int i = 0; i < bNames.size(); i++){
 			float bx = hitArea.x + 0;
@@ -74,11 +74,11 @@ void guiTypeMultiToggle::render(){
 			}
 
 			glColor4fv(fgColor.getColorF());
-			ofRect(bx, by, boxSize, boxSize);
+			ofDrawRectangle(bx, by, boxSize, boxSize);
 
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(bx, by, boxSize, boxSize);
+			ofDrawRectangle(bx, by, boxSize, boxSize);
 
 			glColor4fv(textColor.getColorF());
 			displayText.renderString(bNames[i], bx + boxSize + boxSpacing, by + boxSize -2);

@@ -18,14 +18,14 @@ simpleLogger::~simpleLogger(){
 void simpleLogger::setup(string logFileName, bool overwrite){
 	logFile = logFileName;
 
-	fileLoaded = xml.loadFile(logFile);
+	fileLoaded = xml.load(logFile);
 	if(overwrite){
 		xml.clear();
-		xml.saveFile(logFile);
+		xml.save(logFile);
 	}
 
 	if( !fileLoaded ){
-		xml.saveFile(logFile);
+		xml.save(logFile);
 		fileLoaded = true;
 	}
 }
@@ -102,13 +102,13 @@ void simpleLogger::logToXml(logRecord & record){
 
 //-----------------------------------------------.
 void simpleLogger::saveFile(){
-	xml.saveFile(logFile);
+	xml.save(logFile);
 }
 
 //-----------------------------------------------.
 void simpleLogger::draw(float x, float y){
 	ofPushStyle();
-		float yPos;
+		float yPos = 0.0;
 		for(int i = logs.size()-1; i >= 0; i--){
 			yPos += 13.6;
 			string str = logs[i].logStr;
@@ -120,7 +120,7 @@ void simpleLogger::draw(float x, float y){
 //-----------------------------------------------.
 void simpleLogger::draw(float x, float y, float width, float height){
 	ofPushStyle();
-		float yPos;
+		float yPos = 0.0;
 		for(int i = logs.size()-1; i >= 0; i--){
 			yPos += 13.6;
 			if(yPos >= height)break;

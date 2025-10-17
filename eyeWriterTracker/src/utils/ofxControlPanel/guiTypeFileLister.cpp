@@ -109,13 +109,13 @@ void guiTypeFileLister::drawRecords(float x, float y, float width, float height)
 				ofPushStyle();
 					ofFill();
 					glColor4fv( fgColor.getSelectedColorF() );
-					ofRect(x, y+yPos+4, width-5, -textH);
+					ofDrawRectangle(x, y+yPos+4, width-5, -textH);
 				ofPopStyle();
 			}else if( i == selectionTmp){
 				ofPushStyle();
 					ofNoFill();
 					glColor4fv(outlineColor.getColorF());
-					ofRect(x, y+yPos+4, width-2, -textH);
+					ofDrawRectangle(x, y+yPos+4, width-2, -textH);
 				ofPopStyle();
 			}
 
@@ -136,19 +136,19 @@ void guiTypeFileLister::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+			ofDrawRectangle(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
 
 			glColor4fv(textColor.getColorF());
 			guiBaseObject::renderText();
 
 			ofFill();
 			glColor4fv(fgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y + (hitArea.height - 5) * pct, sliderWidth, 5);
+			ofDrawRectangle(hitArea.x, hitArea.y + (hitArea.height - 5) * pct, sliderWidth, 5);
 
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
-			ofRect(hitArea.x , hitArea.y, sliderWidth, hitArea.height);
+			ofDrawRectangle(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+			ofDrawRectangle(hitArea.x , hitArea.y, sliderWidth, hitArea.height);
 
 			glColor4fv(textColor.getColorF());
 			if(lister != NULL)drawRecords(hitArea.x+sliderWidth + 5, hitArea.y, boundingBox.width-(sliderWidth + 5), boundingBox.height);

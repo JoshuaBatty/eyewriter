@@ -35,16 +35,16 @@ void guiTypeSlider::render(){
 			//draw the background
 			ofFill();
 			glColor4fv(bgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 
 			//draw the foreground
 			glColor4fv(fgColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width * value.getPct(), hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width * value.getPct(), hitArea.height);
 
 			//draw the outline
 			ofNoFill();
 			glColor4fv(outlineColor.getColorF());
-			ofRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+			ofDrawRectangle(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
 		glPopMatrix();
 	ofPopStyle();
 }
