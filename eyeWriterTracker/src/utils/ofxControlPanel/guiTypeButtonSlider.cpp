@@ -26,8 +26,8 @@ void guiTypePlusButton::render(){
 
 			glColor4fv(fgColor.getColorF());
 			ofSetLineWidth(1.0f);
-			ofLine(hitArea.x+hitArea.width/2.0f, hitArea.y, hitArea.x+hitArea.width/2.0f, hitArea.y + hitArea.height -1.0f);
-			ofLine(hitArea.x +1.0f, hitArea.y+hitArea.height/2.0f, hitArea.x+hitArea.width, hitArea.y + hitArea.height/2.0f);
+			ofDrawLine(hitArea.x+hitArea.width/2.0f, hitArea.y, hitArea.x+hitArea.width/2.0f, hitArea.y + hitArea.height -1.0f);
+			ofDrawLine(hitArea.x +1.0f, hitArea.y+hitArea.height/2.0f, hitArea.x+hitArea.width, hitArea.y + hitArea.height/2.0f);
 
 		glPopMatrix();
 	ofPopStyle();
@@ -60,7 +60,7 @@ void guiTypeMinusButton::render(){
 
 			glColor4fv(fgColor.getColorF());
 			ofSetLineWidth(1.0f);
-			ofLine(hitArea.x +1.0f, hitArea.y+hitArea.height/2.0f, hitArea.x+hitArea.width, hitArea.y + hitArea.height/2.0f);
+			ofDrawLine(hitArea.x +1.0f, hitArea.y+hitArea.height/2.0f, hitArea.x+hitArea.width, hitArea.y + hitArea.height/2.0f);
 
 		glPopMatrix();
 	ofPopStyle();

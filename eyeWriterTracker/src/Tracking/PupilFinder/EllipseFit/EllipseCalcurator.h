@@ -75,7 +75,7 @@ public:
 			float t = TWO_PI * (float)i/(float)resolution;
 			float ex = (axis_a * cos(t));
 			float ey = (axis_b * sin(t));
-			ofLine(0,0,ex,ey);
+			ofDrawLine(0,0,ex,ey);
 		}
 
 

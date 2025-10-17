@@ -16,16 +16,16 @@ void inputManager::setup(){
 	bRecord = false;
 	
 	ofxXmlSettings XML;
-	XML.loadFile("settings/inputSettings.xml");
+	XML.load("settings/inputSettings.xml");
 	mode = XML.getValue("app:mode", 0);
 	
 	if (mode == INPUT_VIDEO){
 		//cout << "input manager: loading video file" << endl;
 		string movieToLoad = XML.getValue("app:videoFile", "");
-		vidPlayer.loadMovie(movieToLoad);
+		vidPlayer.load(movieToLoad);
 		vidPlayer.play();
-		width	= vidPlayer.width;
-		height	= vidPlayer.height;
+		width	= vidPlayer.getWidth();
+		height	= vidPlayer.getHeight();
 		playposition = 0;
 		
 		grayImage = new ofxCvGrayscaleImage;
@@ -98,7 +98,7 @@ void inputManager::update(){
 		}
 
 	} else {									// if (mode == INPUT_VIDEO)
-		vidPlayer.idleMovie();
+		vidPlayer.update();
 		bIsFrameNew = vidPlayer.isFrameNew();
 		if (bIsFrameNew){
 			playposition = vidPlayer.getPosition();
@@ -107,7 +107,8 @@ void inputManager::update(){
 	
 	if (bIsFrameNew){
 		if (mode == INPUT_VIDEO){
-			colorImg.setFromPixels(vidPlayer.getPixels(), width,height);
+			auto p = vidPlayer.getPixels();
+			colorImg.setFromPixels(p.getData(), width,height);
 			cvCvtColor(colorImg.getCvImage(), grayImage->getCvImage(), CV_RGB2GRAY);
 		}
 		
@@ -115,7 +116,8 @@ void inputManager::update(){
 			#ifdef TARGET_OSX
 			ofxLibdcPtGrey& cam = *((ofxLibdcPtGrey*) vidGrabber);
 			// in the case of a ptgrey camera, we *know* which frame is which.
-			fcount = cam.getEmbeddedStrobeCounter(grayImage->getPixels());
+			auto p = grayImage->getPixels();
+			fcount = cam.getEmbeddedStrobeCounter(p.getData());
 			#endif
 		} else {
 			// otherwise we're just going to guess
@@ -134,7 +136,8 @@ void inputManager::update(){
 		
 		if (bRecord) {
 			string temp = folderName + "/" + ofToString(ofGetFrameNum()) + ".jpg";
-			threadedImageSaver * TO = new threadedImageSaver(grayImage->getPixels(), temp);
+			auto p = grayImage->getPixels();
+			threadedImageSaver * TO = new threadedImageSaver(p.getData(), temp);
 			TO->start();
 		}
 		

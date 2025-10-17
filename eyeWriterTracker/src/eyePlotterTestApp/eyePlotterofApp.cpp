@@ -40,7 +40,7 @@ void eyePlotterofApp::setup(){
 		<smoothPct>0.450000</smoothPct>
 	*/
 	
-	ghettoSettings.loadFile("settings.xml");
+	ghettoSettings.load("settings.xml");
 	buttonCount = ghettoSettings.getValue("buttonCount", 22);
 	rate = ghettoSettings.getValue("rate", 1.8);
 	ptThreshold = ghettoSettings.getValue("ptThreshold", 7.0);
@@ -133,7 +133,7 @@ void eyePlotterofApp::keyPressed  (int key){
 	ghettoSettings.setValue("ptThreshold", ptThreshold);
 	ghettoSettings.setValue("smoothPct", smoothPct);
 
-	ghettoSettings.saveFile("settings.xml");
+	ghettoSettings.save("settings.xml");
 	
 	if( key == 'e'){
 	}

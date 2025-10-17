@@ -138,7 +138,11 @@ void thresholdCalculator::drawPupilImageWithScanLine(int x, int y, int w, int h,
 void thresholdCalculator::drawBrightnessScanGraph(int x, int y, ofxCvGrayscaleImage & img, bool bIsVertical, float threshold_p,
 												  float threshold_g, string graphname)
 {
-	unsigned char * tempPixels = img.getPixels();
+	ofPixels& pixels = img.getPixels();
+	if(!pixels.isAllocated()){
+		return;
+	}
+	unsigned char * tempPixels = pixels.getData();
 	
 	ofPushMatrix();
 	ofTranslate(x, y, 0);
@@ -181,5 +185,4 @@ void thresholdCalculator::drawBrightnessScanGraph(int x, int y, ofxCvGrayscaleIm
 	ofPopMatrix();
 	
 }
-
 

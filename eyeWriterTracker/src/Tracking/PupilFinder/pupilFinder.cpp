@@ -82,6 +82,8 @@ bool pupilFinder::update(ofxCvGrayscaleAdvanced & _currentImg, int threshold, in
 			return false;
 		}
 	}
+	
+	return false;
 }
 
 //----------------------------------------------------

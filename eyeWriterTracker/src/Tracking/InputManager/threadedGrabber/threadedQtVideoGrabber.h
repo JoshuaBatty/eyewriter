@@ -41,7 +41,8 @@ public:
 	}
 	template <class L>
 	void addListener(L* listener) {
-		ofAddListener(frameReceived, listener, &(L::frameReceived));
+		using Callback = void (L::*)(ofVideoGrabber &);
+		ofAddListener(frameReceived, listener, static_cast<Callback>(&L::frameReceived));
 	}
 	void getThreadedPixels(ofxCvColorImage & colorImg, bool & bNeedUpdate) {
 		lock();

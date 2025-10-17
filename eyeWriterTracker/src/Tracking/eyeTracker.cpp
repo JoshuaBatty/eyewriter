@@ -58,7 +58,8 @@ void eyeTracker::update(ofxCvGrayscaleImage & grayImgFromCam) {
 	tState.bGoodAlternation = false;
 	
 	// get the image from input manager.
-	currentImg.setFromPixels(grayImgFromCam.getPixels(), grayImgFromCam.width, grayImgFromCam.height);	
+	auto p = grayImgFromCam.getPixels();
+	currentImg.setFromPixels(p.getData(), grayImgFromCam.width, grayImgFromCam.height);
 
 	// get the small size image to find eye position.
 	if (divisor !=1) smallCurrentImg.scaleIntoMe(currentImg, CV_INTER_LINEAR);
@@ -87,7 +88,8 @@ void eyeTracker::update(ofxCvGrayscaleImage & grayImgFromCam) {
 		if (magRatio != 1) {
 			magCurrentImg.scaleIntoMe(currentImg, CV_INTER_CUBIC);			// magnify by bicubic
 		} else {
-			magCurrentImg.setFromPixels(currentImg.getRoiPixels(), targetRect.width, targetRect.height);
+			auto p = currentImg.getRoiPixels();
+			magCurrentImg.setFromPixels(p.getData(), targetRect.width, targetRect.height);
 		}
 		
 		currentImg.resetROI();
@@ -154,8 +156,9 @@ bool eyeTracker::getBrightEyeDarkEye() {
 
 	currentImg.setROI(targetRect);
 
-	if (bBright) brightEyeImg.setFromPixels(currentImg.getRoiPixels(), targetRect.width, targetRect.height);
-	else darkEyeImg.setFromPixels(currentImg.getRoiPixels(), targetRect.width, targetRect.height);
+	auto p = currentImg.getRoiPixels();
+	if (bBright) brightEyeImg.setFromPixels(p.getData(), targetRect.width, targetRect.height);
+	else darkEyeImg.setFromPixels(p.getData(), targetRect.width, targetRect.height);
 	
 	currentImg.resetROI();
 	return bBright;

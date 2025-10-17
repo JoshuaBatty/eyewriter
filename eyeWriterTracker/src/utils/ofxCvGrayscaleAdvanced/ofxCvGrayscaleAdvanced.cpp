@@ -9,20 +9,32 @@ ofxCvGrayscaleAdvanced::ofxCvGrayscaleAdvanced(){
 }
 
 //--------------------------------------------------------------------------------
-void  ofxCvGrayscaleAdvanced::drawBlobIntoMe( ofxCvBlob &blob, int color ) {
+void ofxCvGrayscaleAdvanced::drawBlobIntoMe( ofxCvBlob &blob, int color ) {
 	if( blob.pts.size() > 0 ) {
-		CvPoint* pts = new CvPoint[blob.nPts];
+		std::vector<cv::Point> pts(blob.nPts);
 		for( int i=0; i < blob.nPts ; i++ ) {
-			pts[i].x = (int)blob.pts[i].x;
-			pts[i].y = (int)blob.pts[i].y;
+			pts[i].x = static_cast<int>(blob.pts[i].x);
+			pts[i].y = static_cast<int>(blob.pts[i].y);
 		}
-		int nPts = blob.nPts;
-		cvFillPoly( cvImage, &pts, &nPts, 1,
-				   CV_RGB(color,color,color) );
-		delete pts;
+		const std::vector<std::vector<cv::Point>> contours = { pts };
+		cv::fillPoly(cv::cvarrToMat(cvImage), contours, cv::Scalar(color, color, color));
 	}
 }
 
+////--------------------------------------------------------------------------------
+//void  ofxCvGrayscaleAdvanced::drawBlobIntoMe( ofxCvBlob &blob, int color ) {
+//	if( blob.pts.size() > 0 ) {
+//		CvPoint* pts = new CvPoint[blob.nPts];
+//		for( int i=0; i < blob.nPts ; i++ ) {
+//			pts[i].x = (int)blob.pts[i].x;
+//			pts[i].y = (int)blob.pts[i].y;
+//		}
+//		int nPts = blob.nPts;
+//		cvFillPoly( cvImage, &pts, &nPts, 1,
+//				   CV_RGB(color,color,color) );
+//		delete pts;
+//	}
+//}
 
 //--------------------------------------------------------------
 void ofxCvGrayscaleAdvanced::swapTemp() {

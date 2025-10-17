@@ -43,7 +43,8 @@ public:
 	}
 	template <class L>
 	void addListener(L* listener) {
-		ofAddListener(frameReceived, listener, &(L::frameReceived));
+		using Callback = void (L::*)(ofxLibdcPtGrey &);
+		ofAddListener(frameReceived, listener, static_cast<Callback>(&L::frameReceived));
 	}
 	void getThreadedPixels(ofxCvGrayscaleImage & grayImg, bool & bNeedUpdate) {
 		lock();

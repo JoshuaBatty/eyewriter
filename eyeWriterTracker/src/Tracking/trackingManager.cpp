@@ -91,13 +91,15 @@ void trackingManager::videoSettings(){
 //--------------------------------------------------------------
 void trackingManager::setOriginalPosition(){
 	
+	auto grayEven = IM.grayEvenImage.getPixels();
+	auto grayOdd = IM.grayOddImage.getPixels();
 	if ((tracker.bIsBrightEye && IM.fcount == 0) || (!tracker.bIsBrightEye && IM.fcount ==1) ||
 		(IM.grabberType == INPUT_OFXLIBDC && IM.mode == INPUT_LIVE_VIDEO)) {		//Bright Eye => Left, Dark Eye =>Right
-		originalPositionB.setFromPixels(IM.grayEvenImage.getPixels(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
-		originalPositionD.setFromPixels(IM.grayOddImage.getPixels(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
+		originalPositionB.setFromPixels(grayEven.getData(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
+		originalPositionD.setFromPixels(grayOdd.getData(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
 	} else {
-		originalPositionD.setFromPixels(IM.grayEvenImage.getPixels(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
-		originalPositionB.setFromPixels(IM.grayOddImage.getPixels(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
+		originalPositionD.setFromPixels(grayEven.getData(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
+		originalPositionB.setFromPixels(grayOdd.getData(), IM.width, IM.height, OF_IMAGE_GRAYSCALE, true);
 	}
 	
 	bOriginalPositon = true;

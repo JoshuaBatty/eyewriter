@@ -163,10 +163,10 @@ void guiTypePanel::drawLocked(){
 		ofTranslate(LOCK_BORDER, LOCK_BORDER, 0);
 
 		ofSetColor(255, 255, 255);
-		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT/2, LOCK_WIDTH * 0.8, LOCK_HEIGHT * 0.9);
+		ofDrawEllipse(LOCK_WIDTH/2, LOCK_HEIGHT/2, LOCK_WIDTH * 0.8, LOCK_HEIGHT * 0.9);
 
 		ofSetColor(200, 0, 0);
-		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT/2, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
+		ofDrawEllipse(LOCK_WIDTH/2, LOCK_HEIGHT/2, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
 
 		ofSetColor(255, 255, 255);
 		ofDrawRectangle(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
@@ -184,10 +184,10 @@ void guiTypePanel::drawUnlocked(){
 
 		ofTranslate(LOCK_BORDER, LOCK_BORDER, 0);
 		ofSetColor(255, 255, 255);
-		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT * 0.4, LOCK_WIDTH * 0.8, LOCK_HEIGHT * 0.9);
+		ofDrawEllipse(LOCK_WIDTH/2, LOCK_HEIGHT * 0.4, LOCK_WIDTH * 0.8, LOCK_HEIGHT * 0.9);
 
 		ofSetColor(0, 0, 0);
-		ofEllipse(LOCK_WIDTH/2, LOCK_HEIGHT * 0.44, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
+		ofDrawEllipse(LOCK_WIDTH/2, LOCK_HEIGHT * 0.44, LOCK_WIDTH * 0.8 * 0.6, LOCK_HEIGHT * 0.9 * 0.6);
 
 		ofSetColor(255, 255, 255);
 		ofDrawRectangle(0, LOCK_HEIGHT/2, LOCK_WIDTH, LOCK_HEIGHT/2);
